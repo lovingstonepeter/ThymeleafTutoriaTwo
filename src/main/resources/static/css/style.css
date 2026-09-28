@@ -1,0 +1,1584 @@
+    /* =========================================================
+       MAJAMAA / WATER MANAGEMENT SYSTEM
+       PROFESSIONAL GLOBAL STYLESHEET
+       Spring Boot + Thymeleaf
+       ========================================================= */
+
+
+    /* =========================================================
+       1. GLOBAL RESET
+       ========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+
+    font-family:
+            "Segoe UI",
+            Arial,
+            Helvetica,
+            sans-serif;
+
+    color: #ffffff;
+
+    background:
+            radial-gradient(
+                    circle at 15% 20%,
+                    rgba(0, 212, 255, 0.22),
+                    transparent 30%
+            ),
+            radial-gradient(
+                    circle at 85% 80%,
+                    rgba(255, 215, 0, 0.12),
+                    transparent 28%
+            ),
+            linear-gradient(
+                    135deg,
+                    #031d32 0%,
+                    #063b5c 45%,
+                    #006b8f 100%
+            );
+
+    background-attachment: fixed;
+
+    line-height: 1.6;
+}
+
+
+/* =========================================================
+   2. WATERMARK
+   ========================================================= */
+
+body::before {
+    content: "WATER";
+
+    position: fixed;
+
+    top: 50%;
+    left: 50%;
+
+    transform:
+            translate(-50%, -50%)
+            rotate(-25deg);
+
+    font-size: clamp(80px, 15vw, 180px);
+
+    font-weight: 900;
+
+    letter-spacing: 15px;
+
+    color: rgba(255, 255, 255, 0.035);
+
+    pointer-events: none;
+
+    user-select: none;
+
+    white-space: nowrap;
+
+    z-index: 0;
+}
+
+
+/* =========================================================
+   3. GENERAL LINKS
+   ========================================================= */
+
+a {
+    color: inherit;
+
+    text-decoration: none;
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+    outline: 3px solid rgba(255, 215, 0, 0.55);
+
+    outline-offset: 3px;
+}
+
+
+/* =========================================================
+   4. MAIN CONTAINER
+   ========================================================= */
+
+.container {
+    position: relative;
+
+    z-index: 1;
+
+    width: min(94%, 1150px);
+
+    margin: 40px auto;
+
+    padding: 35px;
+
+    background:
+            linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.14),
+                    rgba(255, 255, 255, 0.055)
+            );
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border:
+            1px solid rgba(255, 255, 255, 0.18);
+
+    border-radius: 24px;
+
+    box-shadow:
+            0 25px 60px rgba(0, 0, 0, 0.28),
+            inset 0 1px 0 rgba(255, 255, 255, 0.12);
+}
+
+
+/* =========================================================
+   5. HEADINGS
+   ========================================================= */
+
+h1 {
+    margin-bottom: 28px;
+
+    color: #ffd700;
+
+    font-size: clamp(28px, 4vw, 38px);
+
+    font-weight: 750;
+
+    letter-spacing: 0.3px;
+
+    text-align: center;
+
+    text-shadow:
+            0 0 18px rgba(255, 215, 0, 0.22);
+}
+
+h2 {
+    margin-bottom: 20px;
+
+    color: #ffffff;
+
+    font-size: 25px;
+}
+
+h3 {
+    color: #ffd700;
+}
+
+
+/* =========================================================
+   6. SMALL TEXT / DESCRIPTIONS
+   ========================================================= */
+
+.login-description {
+    margin-bottom: 25px;
+
+    color: rgba(255, 255, 255, 0.72);
+
+    text-align: center;
+
+    font-size: 15px;
+}
+
+
+/* =========================================================
+   7. TABLE WRAPPER
+   ========================================================= */
+
+.table-container {
+    width: 100%;
+
+    overflow-x: auto;
+
+    border-radius: 18px;
+}
+
+
+/* =========================================================
+   8. TABLE
+   ========================================================= */
+
+table {
+    width: 100%;
+
+    border-collapse: separate;
+
+    border-spacing: 0;
+
+    overflow: hidden;
+
+    background:
+            rgba(3, 29, 50, 0.38);
+
+    border:
+            1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 18px;
+
+    box-shadow:
+            0 15px 35px rgba(0, 0, 0, 0.18);
+}
+
+th,
+td {
+    padding: 16px 18px;
+
+    text-align: left;
+
+    border-bottom:
+            1px solid rgba(255, 255, 255, 0.08);
+}
+
+th {
+    background:
+            linear-gradient(
+                    135deg,
+                    rgba(255, 215, 0, 0.20),
+                    rgba(255, 215, 0, 0.08)
+            );
+
+    color: #ffd700;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.6px;
+}
+
+td {
+    color: rgba(255, 255, 255, 0.92);
+
+    font-size: 15px;
+}
+
+tbody tr {
+    transition:
+            background 0.25s ease,
+            transform 0.25s ease;
+}
+
+tbody tr:hover {
+    background:
+            rgba(255, 255, 255, 0.065);
+
+    transform: scale(1.003);
+}
+
+tbody tr:last-child td {
+    border-bottom: none;
+}
+
+
+/* =========================================================
+   9. GENERAL BUTTON
+   ========================================================= */
+
+button {
+    font-family: inherit;
+
+    cursor: pointer;
+}
+    .logout-form {
+        width: auto !important;
+        display: flex;
+        justify-content: flex-end;
+        margin: 0;
+    }
+
+    .logout-button {
+        width: auto !important;
+        min-width: 105px;
+        max-width: 130px;
+
+        min-height: 42px;
+
+        padding: 10px 18px;
+
+        border: 1px solid rgba(255, 215, 0, 0.45);
+        border-radius: 10px;
+
+        background: linear-gradient(135deg, #ffd700, #d9a900);
+
+        color: #06243a;
+
+        font-family: inherit;
+        font-size: 14px;
+        font-weight: 800;
+
+        cursor: pointer;
+
+        box-shadow:
+                0 7px 18px rgba(255, 215, 0, 0.18);
+
+        transition:
+                transform 0.2s ease,
+                box-shadow 0.2s ease,
+                filter 0.2s ease;
+    }
+
+    .logout-button:hover {
+        transform: translateY(-2px);
+
+        filter: brightness(1.07);
+
+        box-shadow:
+                0 11px 25px rgba(255, 215, 0, 0.28);
+    }
+
+    .logout-button:active {
+        transform: translateY(0);
+    }
+
+
+/* =========================================================
+   11. ADD BUTTON
+   ========================================================= */
+
+.add-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 12px 20px;
+
+    margin-bottom: 20px;
+
+    background:
+            linear-gradient(
+                    135deg,
+                    #ffd700,
+                    #f4c400
+            );
+
+    color: #06243a !important;
+
+    border: none;
+
+    border-radius: 11px;
+
+    font-weight: 750;
+
+    cursor: pointer;
+
+    box-shadow:
+            0 8px 20px rgba(255, 215, 0, 0.18);
+
+    transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            filter 0.25s ease;
+}
+
+.add-button:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(1.06);
+
+    box-shadow:
+            0 12px 25px rgba(255, 215, 0, 0.28);
+}
+
+
+/* =========================================================
+   12. OLD ADD PLAYER HTML SUPPORT
+   ========================================================= */
+
+/*
+   Your current Players HTML:
+
+   <h1>
+       <button>
+           <a th:href="@{/players/addPlayer}">
+               Add Player
+           </a>
+       </button>
+   </h1>
+*/
+
+h1 > button:not([type="submit"]) {
+    border: none;
+
+    background: transparent;
+
+    font: inherit;
+
+    padding: 0;
+}
+
+h1 > button:not([type="submit"]) > a {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 12px 22px;
+
+    background:
+            linear-gradient(
+                    135deg,
+                    #ffd700,
+                    #f2c400
+            );
+
+    color: #06243a !important;
+
+    border-radius: 11px;
+
+    font-size: 15px;
+
+    font-weight: 750;
+
+    box-shadow:
+            0 8px 20px rgba(255, 215, 0, 0.18);
+
+    transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            filter 0.25s ease;
+}
+
+h1 > button:not([type="submit"]) > a:hover {
+    transform: translateY(-2px);
+
+    filter: brightness(1.06);
+
+    box-shadow:
+            0 12px 28px rgba(255, 215, 0, 0.30);
+}
+
+
+/* =========================================================
+   13. ACTION AREA
+   ========================================================= */
+
+.actions {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    flex-wrap: wrap;
+}
+
+
+/* =========================================================
+   14. EDIT LINK
+   ========================================================= */
+
+.edit-link {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 8px 13px;
+
+    color: #ffd700;
+
+    background:
+            rgba(255, 215, 0, 0.08);
+
+    border:
+            1px solid rgba(255, 215, 0, 0.28);
+
+    border-radius: 9px;
+
+    font-weight: 650;
+
+    transition:
+            background 0.25s ease,
+            transform 0.25s ease,
+            box-shadow 0.25s ease;
+}
+
+.edit-link:hover {
+    background:
+            rgba(255, 215, 0, 0.16);
+
+    transform: translateY(-1px);
+
+    box-shadow:
+            0 5px 15px rgba(255, 215, 0, 0.12);
+}
+
+
+/*
+   Also styles the current Edit link even without
+   class="edit-link".
+*/
+
+td a[href*="updatePlayer"],
+td a[href*="/update"] {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 8px 13px;
+
+    margin-right: 7px;
+
+    color: #ffd700;
+
+    background:
+            rgba(255, 215, 0, 0.08);
+
+    border:
+            1px solid rgba(255, 215, 0, 0.28);
+
+    border-radius: 9px;
+
+    font-weight: 650;
+
+    transition:
+            all 0.25s ease;
+}
+
+td a[href*="updatePlayer"]:hover,
+td a[href*="/update"]:hover {
+    background:
+            rgba(255, 215, 0, 0.17);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   15. DELETE
+   ========================================================= */
+
+.delete-form {
+    display: inline;
+}
+
+
+.delete-button:hover {
+    color: #ffffff;
+
+    background:
+            rgba(220, 50, 50, 0.25);
+
+    border-color:
+            rgba(255, 100, 100, 0.45);
+
+    transform: translateY(-1px);
+
+    box-shadow:
+            0 6px 15px rgba(255, 70, 70, 0.14);
+}
+    .delete-button {
+        width: auto !important;
+        min-width: 85px;
+        max-width: 120px;
+        min-height: 38px;
+
+        padding: 8px 14px;
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+
+/*
+   Current Player page uses a normal Delete link.
+*/
+
+td a[href*="deletePlayer"],
+td a[href*="/delete"] {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 8px 13px;
+
+    color: #ffb8b8;
+
+    background:
+            rgba(255, 80, 80, 0.07);
+
+    border:
+            1px solid rgba(255, 100, 100, 0.25);
+
+    border-radius: 9px;
+
+    font-weight: 650;
+
+    transition:
+            all 0.25s ease;
+}
+
+td a[href*="deletePlayer"]:hover,
+td a[href*="/delete"]:hover {
+    color: #ffffff;
+
+    background:
+            rgba(220, 50, 50, 0.25);
+
+    transform: translateY(-1px);
+}
+
+
+/* =========================================================
+   16. FORM CONTAINER
+   ========================================================= */
+
+.form-container {
+    width: 100%;
+
+    max-width: 600px;
+
+    margin: 0 auto;
+
+    padding: 32px;
+
+    background:
+            linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.12),
+                    rgba(255, 255, 255, 0.045)
+            );
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    border:
+            1px solid rgba(255, 255, 255, 0.17);
+
+    border-radius: 20px;
+
+    box-shadow:
+            0 20px 45px rgba(0, 0, 0, 0.20),
+            inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+
+/* =========================================================
+   17. PLAYER FORM INNER CONTAINER
+   ========================================================= */
+
+.inside {
+    width: 100%;
+
+    max-width: 600px;
+
+    margin: 0 auto;
+
+    padding: 30px;
+
+    background:
+            rgba(255, 255, 255, 0.07);
+
+    border:
+            1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 18px;
+
+    box-shadow:
+            inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+
+/* =========================================================
+   18. FORM
+   ========================================================= */
+
+form {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 21px;
+}
+
+
+/* =========================================================
+   19. LABELS
+   ========================================================= */
+
+.form-group label,
+form > label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #ffd700;
+
+    font-size: 14px;
+
+    font-weight: 700;
+
+    letter-spacing: 0.25px;
+}
+
+
+/* =========================================================
+   20. INPUTS
+   ========================================================= */
+
+.form-group input,
+form > input[type="text"],
+form > input[type="number"],
+form > input[type="password"] {
+    width: 100%;
+
+    min-height: 48px;
+
+    padding: 12px 14px;
+
+    background:
+            rgba(3, 29, 50, 0.42);
+
+    color: #ffffff;
+
+    border:
+            1px solid rgba(255, 255, 255, 0.17);
+
+    border-radius: 11px;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    transition:
+            border-color 0.25s ease,
+            background 0.25s ease,
+            box-shadow 0.25s ease,
+            transform 0.25s ease;
+}
+
+.form-group input:hover,
+form > input[type="text"]:hover,
+form > input[type="number"]:hover,
+form > input[type="password"]:hover {
+    border-color:
+            rgba(255, 255, 255, 0.30);
+}
+
+.form-group input:focus,
+form > input[type="text"]:focus,
+form > input[type="number"]:focus,
+form > input[type="password"]:focus {
+    background:
+            rgba(3, 29, 50, 0.62);
+
+    border-color: #ffd700;
+
+    box-shadow:
+            0 0 0 3px rgba(255, 215, 0, 0.08),
+            0 8px 20px rgba(0, 0, 0, 0.10);
+}
+
+.form-group input::placeholder,
+input::placeholder {
+    color:
+            rgba(255, 255, 255, 0.45);
+}
+
+
+/* =========================================================
+   21. HIDDEN ID INPUT
+   ========================================================= */
+
+input[type="hidden"] {
+    display: none;
+}
+
+
+/* =========================================================
+   22. SUBMIT BUTTON
+   ========================================================= */
+
+/*
+   This handles:
+
+   <button type="submit"
+           th:text="${player.id!=null}?'Edit':'Add'">
+   </button>
+
+   even if class="submit-button" has NOT been added.
+*/
+
+.submit-button,
+form button[type="submit"]:not(.logout-button) {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 100%;
+
+    min-height: 49px;
+
+    padding: 12px 18px;
+
+    margin-top: 8px;
+
+    background:
+            linear-gradient(
+                    135deg,
+                    #ffd700,
+                    #f2c400
+            );
+
+    color: #06243a;
+
+    border: none;
+
+    border-radius: 11px;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    font-weight: 800;
+
+    letter-spacing: 0.2px;
+
+    cursor: pointer;
+
+    box-shadow:
+            0 9px 22px rgba(255, 215, 0, 0.17);
+
+    transition:
+            transform 0.25s ease,
+            box-shadow 0.25s ease,
+            filter 0.25s ease;
+}
+
+.submit-button:hover,
+form button[type="submit"]:not(.logout-button):hover {
+    transform: translateY(-2px);
+
+    filter: brightness(1.05);
+
+    box-shadow:
+            0 14px 28px rgba(255, 215, 0, 0.27);
+}
+
+.submit-button:active,
+form button[type="submit"]:not(.logout-button):active {
+    transform: translateY(0);
+}
+
+
+/* =========================================================
+   23. BACK BUTTON
+   ========================================================= */
+
+.back-button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 44px;
+
+    padding: 10px 17px;
+
+    margin-top: 16px;
+
+    color: #ffd700;
+
+    background:
+            rgba(255, 255, 255, 0.045);
+
+    border:
+            1px solid rgba(255, 215, 0, 0.35);
+
+    border-radius: 10px;
+
+    font-size: 14px;
+
+    font-weight: 650;
+
+    transition:
+            all 0.25s ease;
+}
+
+.back-button:hover {
+    background:
+            rgba(255, 215, 0, 0.11);
+
+    border-color:
+            rgba(255, 215, 0, 0.65);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+            0 8px 18px rgba(255, 215, 0, 0.12);
+}
+
+
+/* =========================================================
+   24. PASSWORD CONTAINER
+   ========================================================= */
+
+.password-container {
+    display: flex;
+
+    width: 100%;
+
+    align-items: stretch;
+}
+
+.password-container input {
+    flex: 1;
+
+    min-width: 0;
+
+    border-top-right-radius: 0;
+
+    border-bottom-right-radius: 0;
+}
+
+.password-toggle {
+    min-width: 105px;
+
+    padding: 0 13px;
+
+    color: #ffd700;
+
+    background:
+            rgba(255, 215, 0, 0.08);
+
+    border:
+            1px solid rgba(255, 215, 0, 0.25);
+
+    border-left: none;
+
+    border-top-right-radius: 11px;
+
+    border-bottom-right-radius: 11px;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+            background 0.25s ease,
+            color 0.25s ease;
+}
+
+.password-toggle:hover {
+    background:
+            rgba(255, 215, 0, 0.17);
+
+    color: #ffffff;
+}
+
+
+/* =========================================================
+   25. ERROR / SUCCESS MESSAGES
+   ========================================================= */
+
+p[style*="ff6b6b"],
+p[style*="FF6B6B"] {
+    padding: 11px 14px;
+
+    margin-bottom: 18px;
+
+    background:
+            rgba(255, 70, 70, 0.09);
+
+    border:
+            1px solid rgba(255, 100, 100, 0.25);
+
+    border-radius: 10px;
+
+    color: #ffb5b5 !important;
+
+    font-size: 14px;
+}
+
+p[style*="90ee90"],
+p[style*="90EE90"] {
+    padding: 11px 14px;
+
+    margin-bottom: 18px;
+
+    background:
+            rgba(80, 220, 130, 0.09);
+
+    border:
+            1px solid rgba(100, 240, 150, 0.22);
+
+    border-radius: 10px;
+
+    color: #a8f0bc !important;
+
+    font-size: 14px;
+}
+
+
+/* =========================================================
+   26. LOGIN PAGE
+   ========================================================= */
+
+.login-page {
+    position: relative;
+
+    z-index: 1;
+
+    width: min(94%, 1050px);
+
+    min-height: 650px;
+
+    margin: 35px auto;
+
+    display: grid;
+
+    grid-template-columns: 1.05fr 0.95fr;
+
+    overflow: hidden;
+
+    background:
+            rgba(3, 29, 50, 0.42);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    border:
+            1px solid rgba(255, 255, 255, 0.16);
+
+    border-radius: 26px;
+
+    box-shadow:
+            0 30px 70px rgba(0, 0, 0, 0.30);
+}
+
+
+/* =========================================================
+   27. LOGIN IMAGE PANEL
+   ========================================================= */
+
+.login-image-panel {
+    position: relative;
+
+    min-height: 500px;
+
+    overflow: hidden;
+}
+
+.login-image-panel::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+            linear-gradient(
+                    135deg,
+                    rgba(3, 29, 50, 0.12),
+                    rgba(3, 29, 50, 0.58)
+            );
+}
+
+.login-image-panel img {
+    width: 100%;
+
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+            transform 0.8s ease;
+}
+
+.login-page:hover .login-image-panel img {
+    transform: scale(1.025);
+}
+
+
+/* =========================================================
+   28. LOGIN FORM PANEL
+   ========================================================= */
+
+.login-form-panel {
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    padding: 55px 48px;
+
+    background:
+            rgba(255, 255, 255, 0.045);
+}
+
+.login-form-panel h1 {
+    margin-bottom: 30px;
+}
+
+
+/* =========================================================
+   29. LOGIN FORM
+   ========================================================= */
+
+.login-form-panel form {
+    width: 100%;
+}
+
+.login-form-panel .form-group {
+    margin-bottom: 21px;
+}
+
+
+/* =========================================================
+   30. LOGIN INPUTS
+   ========================================================= */
+
+.login-form-panel input[type="text"],
+.login-form-panel input[type="password"] {
+    width: 100%;
+
+    min-height: 50px;
+
+    padding: 13px 15px;
+
+    background:
+            rgba(3, 29, 50, 0.50);
+
+    color: #ffffff;
+
+    border:
+            1px solid rgba(255, 255, 255, 0.17);
+
+    border-radius: 11px;
+
+    outline: none;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    transition:
+            all 0.25s ease;
+}
+
+.login-form-panel input[type="text"]:focus,
+.login-form-panel input[type="password"]:focus {
+    border-color: #ffd700;
+
+    box-shadow:
+            0 0 0 3px rgba(255, 215, 0, 0.08);
+}
+
+
+/* =========================================================
+   31. LOGIN LABELS
+   ========================================================= */
+
+.login-form-panel label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #ffd700;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+
+/* =========================================================
+   32. LOGIN BUTTON
+   ========================================================= */
+
+.login-form-panel .submit-button {
+    margin-top: 10px;
+}
+
+
+/* =========================================================
+   33. LOGIN PASSWORD FIELD
+   ========================================================= */
+
+.login-form-panel .password-container {
+    width: 100%;
+}
+
+.login-form-panel .password-container input {
+    min-height: 50px;
+}
+
+
+/* =========================================================
+   34. GENERAL CARD
+   ========================================================= */
+
+.card {
+    padding: 25px;
+
+    background:
+            rgba(255, 255, 255, 0.07);
+
+    border:
+            1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 18px;
+
+    box-shadow:
+            0 12px 30px rgba(0, 0, 0, 0.16);
+}
+
+
+/* =========================================================
+   35. DASHBOARD GRID
+   ========================================================= */
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(220px, 1fr));
+
+    gap: 20px;
+}
+
+.dashboard-card {
+    padding: 25px;
+
+    background:
+            linear-gradient(
+                    145deg,
+                    rgba(255, 255, 255, 0.11),
+                    rgba(255, 255, 255, 0.045)
+            );
+
+    border:
+            1px solid rgba(255, 255, 255, 0.13);
+
+    border-radius: 18px;
+
+    transition:
+            transform 0.25s ease,
+            border-color 0.25s ease,
+            box-shadow 0.25s ease;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-4px);
+
+    border-color:
+            rgba(255, 215, 0, 0.30);
+
+    box-shadow:
+            0 15px 30px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================================
+   36. UTILITY CLASSES
+   ========================================================= */
+
+.text-gold {
+    color: #ffd700;
+}
+
+.text-muted {
+    color: rgba(255, 255, 255, 0.65);
+}
+
+.text-center {
+    text-align: center;
+}
+
+.mt-20 {
+    margin-top: 20px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+
+/* =========================================================
+   37. RESPONSIVE TABLE
+   ========================================================= */
+
+@media (max-width: 750px) {
+
+    .container {
+        width: 94%;
+
+        padding: 22px;
+
+        margin: 25px auto;
+
+        border-radius: 20px;
+    }
+
+    table {
+        min-width: 620px;
+    }
+
+    .table-container {
+        overflow-x: auto;
+
+        -webkit-overflow-scrolling: touch;
+    }
+}
+
+
+/* =========================================================
+   38. RESPONSIVE LOGIN
+   ========================================================= */
+
+@media (max-width: 800px) {
+
+    .login-page {
+        grid-template-columns: 1fr;
+
+        min-height: auto;
+
+        margin: 20px auto;
+    }
+
+    .login-image-panel {
+        min-height: 260px;
+
+        max-height: 300px;
+    }
+
+    .login-form-panel {
+        padding: 38px 28px;
+    }
+}
+
+
+/* =========================================================
+   39. MOBILE
+   ========================================================= */
+
+@media (max-width: 600px) {
+
+    body {
+        background-attachment: scroll;
+    }
+
+    body::before {
+        font-size: 65px;
+
+        letter-spacing: 8px;
+    }
+
+    .container {
+        width: 94%;
+
+        padding: 18px;
+
+        margin: 18px auto;
+    }
+
+    h1 {
+        font-size: 26px;
+
+        margin-bottom: 22px;
+    }
+
+    .form-container {
+        padding: 21px;
+    }
+
+    .inside {
+        padding: 20px;
+    }
+
+    .password-container {
+        flex-direction: column;
+    }
+
+    .password-container input {
+        border-radius: 10px;
+    }
+
+    .password-toggle {
+        width: 100%;
+
+        min-height: 42px;
+
+        margin-top: 7px;
+
+        border:
+                1px solid rgba(255, 215, 0, 0.25);
+
+        border-radius: 9px;
+    }
+
+    .login-form-panel {
+        padding: 30px 20px;
+    }
+
+    .login-image-panel {
+        min-height: 220px;
+    }
+
+    td,
+    th {
+        padding: 12px;
+    }
+
+    h1 > button:not([type="submit"]) > a {
+        width: 100%;
+    }
+
+    /*
+       Keep logout button comfortable on phones.
+    */
+
+    h1 > form[action="/logout"] {
+        width: 100%;
+    }
+
+    h1 > form[action="/logout"] button[type="submit"],
+    .logout-button {
+        width: 100%;
+
+        max-width: 220px;
+    }
+}
+
+
+/* =========================================================
+   40. VERY SMALL PHONES
+   ========================================================= */
+
+@media (max-width: 400px) {
+
+    .container {
+        padding: 15px;
+    }
+
+    .form-container,
+    .inside {
+        padding: 17px;
+    }
+
+    h1 {
+        font-size: 23px;
+    }
+
+    .login-form-panel {
+        padding: 25px 16px;
+    }
+
+    h1 > form[action="/logout"] button[type="submit"],
+    .logout-button {
+        max-width: none;
+    }
+}
+
+
+/* =========================================================
+   41. REDUCE MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+
+        transition-duration: 0.01ms !important;
+
+        animation-duration: 0.01ms !important;
+
+        animation-iteration-count: 1 !important;
+    }
+}
+    .dashboard-back-button {
+        display: inline-flex;
+
+        align-items: center;
+        justify-content: center;
+
+        width: auto;
+        min-width: 185px;
+
+        min-height: 44px;
+
+        padding: 10px 18px;
+
+        margin-top: 18px;
+
+        background:
+                rgba(255, 255, 255, 0.06);
+
+        color: #ffd700 !important;
+
+        border:
+                1px solid rgba(255, 215, 0, 0.35);
+
+        border-radius: 10px;
+
+        text-decoration: none !important;
+
+        font-size: 14px;
+
+        font-weight: 700;
+
+        box-shadow:
+                0 6px 16px rgba(0, 0, 0, 0.12);
+
+        transition:
+                transform 0.2s ease,
+                background 0.2s ease,
+                border-color 0.2s ease,
+                box-shadow 0.2s ease;
+    }
+
+    .dashboard-back-button:hover {
+        transform: translateY(-2px);
+
+        background:
+                rgba(255, 215, 0, 0.10);
+
+        border-color:
+                rgba(255, 215, 0, 0.65);
+
+        box-shadow:
+                0 9px 20px rgba(255, 215, 0, 0.12);
+    }
+
+    .dashboard-back-button:active {
+        transform: translateY(0);
+    }

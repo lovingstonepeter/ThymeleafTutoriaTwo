@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Players</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<a th:href="@{/players/addPlayer}" class="add-button">
+    + Add Player
+</a>
+<!--<h1><button><a th:href="@{/players/addPlayer}">Add Player</a></button></h1>-->
+<table border="1">
+    <thead>
+    <tr>
+       <th>Id</th>
+       <th>Name</th>
+       <th>Jersey</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+    <tr th:each="player:${players}">
+        <td th:text="${player.id}">Id</td>
+        <td th:text="${player.name}">Name</td>
+        <td th:text="${player.jersey}">Jersey</td>
+        <td>
+            <a th:href="@{/players/updatePlayer/{id}(id=${player.id})}">Edit</a>
+            <a th:href="@{/players/deletePlayer/{id}(id=${player.id})}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<a th:href="@{/dashboard}" class="dashboard-back-button">
+    ← Go back to Dashboard
+</a>
+
+</body>
+</html>

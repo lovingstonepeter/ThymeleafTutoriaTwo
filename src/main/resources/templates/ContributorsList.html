@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <!--
+        Define the character encoding of the page.
+    -->
+    <meta charset="UTF-8">
+
+
+    <!--
+        Load our existing CSS stylesheet.
+
+        Thymeleaf's @{...} syntax creates the correct
+        application URL for the CSS file.
+    -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+
+    <!-- Browser tab title -->
+    <title>Contributors</title>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+
+    <!--
+        ============================================================
+        PAGE HEADER
+        ============================================================
+
+        This heading tells the Treasurer what page they are currently
+        viewing.
+    -->
+    <h1>Contributors</h1>
+
+
+    <!--
+        ============================================================
+        NAVIGATION / ACTIONS
+        ============================================================
+
+        These controls allow the authenticated Treasurer to:
+
+            1. Add a contributor
+            2. Change their password
+            3. Log out
+    -->
+
+    <div class="actions">
+
+
+        <!--
+            --------------------------------------------------------
+            ADD CONTRIBUTOR
+            --------------------------------------------------------
+
+            The root URL "/" displays our contributor form.
+
+            Because "/" is protected by:
+
+                .anyRequest().authenticated()
+
+            only an authenticated user can access it.
+        -->
+        <a th:href="@{/}"
+           class="add-button">
+
+            + Add Contributor
+
+        </a>
+
+        <!--
+            --------------------------------------------------------
+            LOGOUT
+            --------------------------------------------------------
+
+            Logout is handled by Spring Security.
+
+            We use a FORM rather than an ordinary <a> link.
+
+            Why?
+
+            Logout changes the user's authentication state, so
+            Spring Security's CSRF protection expects the request
+            to be submitted safely.
+
+            The form sends:
+
+                POST /logout
+
+            Spring Security intercepts that request and performs
+            the logout.
+        -->
+       <!-- <form th:action="@{/logout}"
+              method="post"
+              class="logout-form">
+
+            <button type="submit"
+                    class="delete-button">
+
+                Logout
+
+            </button>
+
+        </form>
+        -->
+
+    </div>
+
+
+    <!--
+        ============================================================
+        CONTRIBUTORS TABLE
+        ============================================================
+    -->
+
+    <table>
+
+        <thead>
+
+        <tr>
+
+            <th>ID</th>
+
+            <th>Name</th>
+
+            <th>Amount</th>
+
+            <th>Actions</th>
+
+        </tr>
+
+        </thead>
+
+
+        <tbody>
+
+        <!--
+            ========================================================
+            LOOP THROUGH CONTRIBUTORS
+            ========================================================
+
+            th:each loops through the list that our controller
+            placed in the model.
+
+            Controller:
+
+                model.addAttribute(
+                    "contributors",
+                    contribute
+                );
+
+            Therefore:
+
+                ${contributors}
+
+            represents our list.
+
+            For every contributor, Thymeleaf creates one <tr>.
+        -->
+        <tr th:each="contributor : ${contributors}">
+
+
+            <!--
+                Display the contributor ID.
+            -->
+            <td th:text="${contributor.id}">
+                1
+            </td>
+
+
+            <!--
+                Display the contributor's name.
+            -->
+            <td th:text="${contributor.name}">
+                John
+            </td>
+
+
+            <!--
+                Display the contributor's contribution amount.
+            -->
+            <td th:text="${contributor.amount}">
+                1000
+            </td>
+
+
+            <td>
+
+
+                <!--
+                    =================================================
+                    EDIT
+                    =================================================
+
+                    Example generated URL:
+
+                        /contributors/1/edit
+
+                    where 1 is the contributor's ID.
+                -->
+                <a th:href="@{/contributors/{id}/edit(id=${contributor.id})}"
+                   class="edit-link">
+
+                    Edit
+
+                </a>
+
+
+                <!--
+                    =================================================
+                    DELETE
+                    =================================================
+
+                    Delete changes data, so we submit it as POST.
+
+                    Example:
+
+                        POST /contributors/1/delete
+
+                    Spring Security's CSRF protection will also
+                    protect this request.
+                -->
+                <form th:action="@{/contributors/{id}/delete(id=${contributor.id})}"
+                      method="post"
+                      class="delete-form">
+
+                    <button type="submit"
+                            class="delete-button">
+
+                        Delete
+
+                    </button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+
+        <!--
+            If there are no contributors, this row is displayed.
+
+            th:if checks whether the list is empty.
+        -->
+        <tr th:if="${#lists.isEmpty(contributors)}">
+
+            <td colspan="4">
+
+                No contributors found.
+
+            </td>
+
+        </tr>
+
+        </tbody>
+
+    </table>
+
+</div>
+<a th:href="@{/dashboard}" class="dashboard-back-button">
+    ← Go back to Dashboard
+</a>
+
+</body>
+</html>
+

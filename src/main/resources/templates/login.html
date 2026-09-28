@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+
+    <!--
+        Defines the character encoding used by the page.
+
+        UTF-8 allows the browser to correctly display normal
+        text and special characters.
+    -->
+    <meta charset="UTF-8">
+
+
+    <!--
+        Makes the page responsive.
+
+        This is especially important when the application is
+        opened on a phone or tablet.
+
+        Without this, the browser may render the desktop layout
+        as if the screen were much wider than it actually is.
+    -->
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+
+    <!--
+        ============================================================
+        CSS STYLESHEET
+        ============================================================
+
+        Connect our existing CSS file.
+
+        @{} is Thymeleaf's URL expression syntax.
+
+        Therefore:
+
+            @{/css/style.css}
+
+        becomes the correct URL for our application's
+        static CSS file.
+    -->
+    <link rel="stylesheet"
+          th:href="@{/css/style.css}">
+
+
+    <!--
+        ============================================================
+        JAVASCRIPT
+        ============================================================
+
+        Load our password-toggle JavaScript file.
+
+        This file contains:
+
+            togglePassword(inputId)
+
+        which changes a password input between:
+
+            type="password" → hidden
+            type="text"     → visible
+    -->
+    <script th:src="@{/js/password-toggle.js}"></script>
+
+
+    <!--
+        The title displayed in the browser tab.
+    -->
+    <title>Treasurer Login</title>
+
+
+</head>
+
+<body>
+
+<!--
+    ================================================================
+    LOGIN PAGE
+    ================================================================
+
+    This wrapper contains BOTH:
+
+        1. The contribution image
+        2. The Treasurer login form
+
+    On desktop they appear side-by-side.
+
+    On smaller screens they automatically stack vertically.
+
+    The CSS class:
+
+        login-page
+
+    controls this layout.
+-->
+
+<div class="login-page">
+
+
+    <!--
+        ============================================================
+        IMAGE PANEL
+        ============================================================
+
+        This panel displays our existing:
+
+            contribute.jpg
+
+        The image should be stored at:
+
+            src/main/resources/static/images/contribute.jpg
+
+        Since it is inside Spring Boot's static directory,
+        Thymeleaf can access it using:
+
+            @{/images/contribute.jpg}
+    -->
+    <div class="login-image-panel">
+
+
+        <!--
+            ========================================================
+            CONTRIBUTION IMAGE
+            ========================================================
+
+            th:src
+
+            tells Thymeleaf where the image is located.
+
+            alt
+
+            provides alternative text if the image cannot be
+            displayed and also improves accessibility.
+
+            The original image is:
+
+                1024 × 576 pixels
+
+            which has a:
+
+                16:9
+
+            aspect ratio.
+        -->
+        <img th:src="@{/images/contribute.jpg}"
+             alt="Contribution Majamaa">
+
+
+    </div>
+
+
+    <!--
+        ============================================================
+        LOGIN PANEL
+        ============================================================
+
+        This panel contains the Treasurer login form.
+    -->
+    <div class="login-form-panel">
+
+
+        <!--
+            ========================================================
+            PAGE HEADING
+            ========================================================
+        -->
+        <h1>Treasurer Login</h1>
+
+
+        <!--
+            ========================================================
+            ERROR MESSAGE
+            ========================================================
+
+            Spring Security redirects the user to:
+
+                /login?error
+
+            when authentication fails.
+
+            ${param.error}
+
+            checks whether the URL contains the "error" parameter.
+
+            If it exists, this paragraph is displayed.
+        -->
+        <p th:if="${param.error}"
+           style="color: #ff6b6b;">
+
+            Invalid username or password.
+
+        </p>
+
+
+        <!--
+            ========================================================
+            LOGOUT MESSAGE
+            ========================================================
+
+            SecurityConfig redirects to:
+
+                /login?logout
+
+            after successful logout.
+
+            ${param.logout}
+
+            checks whether the URL contains the "logout"
+            parameter.
+        -->
+        <p th:if="${param.logout}"
+           style="color: #90ee90;">
+
+            You have been logged out successfully.
+
+        </p>
+
+
+        <!--
+            ========================================================
+            LOGIN FORM
+            ========================================================
+
+            The form submits to:
+
+                POST /login
+
+            Our LoginController does NOT process this POST request.
+
+            Spring Security intercepts it and performs authentication.
+
+            Therefore:
+
+                GET /login
+                    → LoginController
+
+                POST /login
+                    → Spring Security
+        -->
+        <form th:action="@{/login}"
+              method="post">
+
+
+            <!--
+                ====================================================
+                USERNAME
+                ====================================================
+            -->
+            <div class="form-group">
+
+
+                <label for="username">
+                    Username:
+                </label>
+
+
+                <!--
+                    Spring Security expects the username parameter
+                    to have the name:
+
+                        username
+                -->
+                <input type="text"
+                       id="username"
+                       name="username"
+                       placeholder="Enter username"
+                       autocomplete="username"
+                       required>
+
+
+            </div>
+
+
+            <!--
+                ====================================================
+                PASSWORD
+                ====================================================
+            -->
+            <div class="form-group">
+
+
+                <label for="password">
+                    Password:
+                </label>
+
+
+                <!--
+                    =================================================
+                    PASSWORD CONTAINER
+                    =================================================
+
+                    The password input and Show/Hide button are
+                    grouped together.
+
+                    On desktop:
+
+                        [ password input ] [ SHOW ]
+
+                    On a small screen:
+
+                        [ password input ]
+                        [ SHOW PASSWORD ]
+                -->
+                <div class="password-container">
+
+
+                    <!--
+                        =================================================
+                        PASSWORD INPUT
+                        =================================================
+
+                        type="password"
+
+                        hides the characters entered by the user.
+
+                        id="password"
+
+                        allows JavaScript to find this input.
+
+                        name="password"
+
+                        is IMPORTANT because Spring Security expects
+                        the submitted password under this parameter.
+
+                        autocomplete="current-password"
+
+                        helps the browser understand that this is
+                        the user's current login password.
+                    -->
+                    <input type="password"
+                           id="password"
+                           name="password"
+                           placeholder="Enter password"
+                           autocomplete="current-password"
+                           required>
+
+
+                    <!--
+                        =================================================
+                        SHOW / HIDE BUTTON
+                        =================================================
+
+                        type="button"
+
+                        prevents this button from submitting the
+                        login form.
+
+                        onclick:
+
+                            togglePassword('password')
+
+                        calls our JavaScript function and tells it
+                        to control the input with:
+
+                            id="password"
+                    -->
+                    <button type="button"
+                            class="password-toggle"
+                            onclick="togglePassword('password')">
+
+                        Show Password
+
+                    </button>
+
+
+                </div>
+
+
+            </div>
+
+
+            <!--
+                ====================================================
+                LOGIN BUTTON
+                ====================================================
+
+                This button DOES submit the form.
+
+                Therefore:
+
+                    type="submit"
+
+                is correct.
+
+                Clicking it sends:
+
+                    POST /login
+
+                to Spring Security.
+            -->
+            <button type="submit"
+                    class="submit-button">
+
+                Login
+
+            </button>
+
+
+        </form>
+
+
+    </div>
+
+
+</div>
+
+</body>
+</html>

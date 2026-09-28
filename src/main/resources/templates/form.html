@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+
+    <!--
+        This connects our HTML page to the CSS file.
+
+        The CSS file is located at:
+        src/main/resources/static/css/style.css
+
+        Spring Boot serves the "static" folder as the
+        root of the website.
+    -->
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+
+    <title>Contribution Form</title>
+</head>
+
+<body>
+
+<!--
+    .container gives the whole page its main layout,
+    width, spacing, transparent background and
+    rounded corners.
+-->
+<div class="container">
+
+    <h1
+            th:text="${contributor.id == null}
+                 ? 'Add Contributor'
+                 : 'Update Contributor'">
+        Add Contributor
+    </h1>
+
+
+    <!--
+        .form-container is the actual CARD containing
+        our form.
+
+        Its CSS will give it:
+        - transparent/glass background
+        - border
+        - box shadow
+        - border-radius
+        - padding
+    -->
+    <div class="form-container">
+
+        <!--
+            th:object tells Thymeleaf:
+
+            "This form is working with the contributor
+            object stored in the model."
+
+            th:action determines where the form will send
+            the POST request.
+
+            If contributor.id is null:
+                We are ADDING a new contributor.
+
+            Otherwise:
+                We are UPDATING an existing contributor.
+        -->
+        <form th:object="${contributor}"
+              th:action="${contributor.id == null}
+                         ? @{/contributors}
+                         : @{/contributors/{id}/update(id=${contributor.id})}"
+              method="post">
+
+            <!--
+                We don't want the user to type the ID.
+
+                The database generates the ID for a new
+                contributor.
+
+                During an update, Thymeleaf keeps the
+                existing ID.
+            -->
+            <input type="hidden" th:field="*{id}">
+
+
+            <!-- ================= NAME ================= -->
+
+            <div class="form-group">
+
+                <!--
+                    The label describes the input field.
+                -->
+                <label for="name">Name:</label>
+
+                <!--
+                    th:field="*{name}" connects this input
+                    to the "name" property of our DTO.
+
+                    For example:
+
+                    DTO name = "John"
+
+                    Thymeleaf will automatically place
+                    John inside this input.
+                -->
+                <input type="text"
+                       id="name"
+                       th:field="*{name}"
+                       placeholder="Enter contributor name"
+                       required>
+
+            </div>
+
+
+            <!-- ================= AMOUNT ================= -->
+
+            <div class="form-group">
+
+                <label for="amount">Amount:</label>
+
+                <!--
+                    type="number" is more appropriate for
+                    an amount than type="text".
+
+                    The browser will therefore expect a
+                    numeric value.
+                -->
+                <input type="number"
+                       id="amount"
+                       th:field="*{amount}"
+                       placeholder="Enter amount"
+                       min="0"
+                       required>
+
+            </div>
+
+
+            <!--
+                This button submits the form.
+
+                Its appearance is controlled by
+                .submit-button in CSS.
+            -->
+            <button type="submit"
+                    class="submit-button"
+                    th:text="${contributor.id == null}
+                             ? 'Add Contributor'
+                             : 'Update Contributor'">
+                Add Contributor
+            </button>
+
+        </form>
+
+
+        <!--
+            IMPORTANT:
+
+            This is still an <a> link.
+
+            We are simply giving it a class so CSS can
+            make it LOOK like a button.
+
+            It takes the user back to the contributors list.
+        -->
+        <a th:href="@{/contributorsList}"
+           class="back-button">
+            ← Back to Contributors
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>
+

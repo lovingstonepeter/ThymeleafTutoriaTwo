@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link th:href="@{/css/style.css}" rel="stylesheet">
+</head>
+<body>
+<div>
+    <h1>Welcome guys and you can view the contributors list below by pressing the button below</h1>
+    <div class="dashboard_link">
+    <h1>
+       <button type="button"><a th:href="@{/contributorsList}">view contributors list</a></button>
+    </h1>
+    </div>
+</div>
+<div>
+    <h1>View the players list as well by pressing the button</h1>
+    <div class="dashboard_link">
+        <h1>
+            <button type="button"><a th:href="@{/players}">view Players list</a></button>
+        </h1>
+    </div>
+</div>
+<!--
+            --------------------------------------------------------
+            CHANGE PASSWORD
+            --------------------------------------------------------
+
+            This sends the Treasurer to:
+
+                GET /change-password
+
+            Our ChangePasswordController displays the form.
+        -->
+<a th:href="@{/change-password}"
+   class="back-button">
+
+    Change Password
+
+</a>
+
+
+<form th:action="@{/logout}" method="post" class="logout-form">
+    <button type="submit" class="logout-button">Logout</button>
+</form>
+</body>
+</html>
